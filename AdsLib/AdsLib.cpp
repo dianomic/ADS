@@ -80,6 +80,11 @@ void AdsSetLocalAddress(const AmsNetId ams)
     GetRouter().SetLocalAddress(ams);
 }
 
+void AdsSetConnectionCallback(const AmsNetId& netId, AdsConnectionCallback cb, void *user_data)
+{
+	GetRouter().SetConnectionCallback(netId, cb, user_data);
+}
+
 long AdsSyncReadReqEx2(long           port,
                        const AmsAddr* pAddr,
                        uint32_t       indexGroup,

@@ -214,4 +214,11 @@ long AdsSyncGetTimeoutEx(long port, uint32_t* timeout);
  */
 long AdsSyncSetTimeoutEx(long port, uint32_t timeout);
 
+/**
+ * Set a callback to be called when a connection to a remote server fails
+ * @param[in] netId The AmsNetIdof the connection to monitor
+ * @param[in] cb The callback function to call
+ * @param[in] user_data The user data to pass the callback
+ */
+void AdsSetConnectionCallback(const AmsNetId& netId, AdsConnectionCallback cb, void *user_data);
 #endif /* #ifndef _ADSLIB_H_ */

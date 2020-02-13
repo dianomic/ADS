@@ -91,6 +91,7 @@ struct AmsConnection {
     SharedDispatcher CreateNotifyMapping(uint32_t hNotify, std::shared_ptr<Notification> notification);
     long DeleteNotification(const AmsAddr& amsAddr, uint32_t hNotify, uint32_t tmms, uint16_t port);
     long AdsRequest(AmsRequest& request, uint32_t timeout);
+    void SetCallback(const AmsNetId& netId, AdsConnectionCallback cb, void *userData) { cnetId = netId; callback = cb; cbUserData = userData;};
 
 private:
     friend struct AmsRouter;
@@ -118,6 +119,9 @@ private:
     std::recursive_mutex dispatcherListMutex;
     SharedDispatcher DispatcherListAdd(const VirtualConnection& connection);
     SharedDispatcher DispatcherListGet(const VirtualConnection& connection);
+    AdsConnectionCallback	callback;
+    void			*cbUserData;
+    AmsNetId			cnetId;
 
 public:
     const IpV4 destIp;

@@ -41,6 +41,7 @@ struct AmsRouter : Router {
     void DelRoute(const AmsNetId& ams);
     AmsConnection* GetConnection(const AmsNetId& pAddr);
     long AdsRequest(AmsRequest& request);
+    void SetConnectionCallback(const AmsNetId& addr, AdsConnectionCallback cb, void *user_data);
 
 private:
     AmsNetId localAddr;

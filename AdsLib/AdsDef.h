@@ -391,6 +391,13 @@ struct AdsNotificationHeader {
 typedef void (* PAdsNotificationFuncEx)(const AmsAddr* pAddr, const AdsNotificationHeader* pNotification,
                                         uint32_t hUser);
 
+/**
+ * @brief Type definition of the callback function used to signal a connection to a server has closed
+ * @param[in] netId Structure with NetId and port number of the ADS server.
+ * @param[in] user_data User data that is passed to the callback.
+ */
+typedef void (* AdsConnectionCallback)(const AmsNetId& netId, void *user_data);
+
 #define ADSSYMBOLFLAG_PERSISTENT    ((uint32_t)(1 << 0))
 #define ADSSYMBOLFLAG_BITVALUE      ((uint32_t)(1 << 1))
 #define ADSSYMBOLFLAG_REFERENCETO   ((uint32_t)(1 << 2))

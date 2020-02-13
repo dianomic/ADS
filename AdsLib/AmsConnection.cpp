@@ -84,7 +84,8 @@ AmsConnection::AmsConnection(Router& __router, IpV4 __destIp)
     refCount(0),
     invokeId(0),
     destIp(__destIp),
-    ownIp(socket.Connect())
+    ownIp(socket.Connect()),
+    callback(0)
 {
     receiver = std::thread(&AmsConnection::TryRecv, this);
 }
@@ -306,6 +307,7 @@ void AmsConnection::TryRecv()
         Recv();
     } catch (const std::runtime_error& e) {
         LOG_INFO(e.what());
+	if (callback) (*callback)(cnetId, cbUserData);
     }
 }
 

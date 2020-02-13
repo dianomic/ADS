@@ -206,3 +206,9 @@ long AmsRouter::DelNotification(uint16_t port, const AmsAddr* pAddr, uint32_t hN
     auto& p = ports[port - Router::PORT_BASE];
     return p.DelNotification(*pAddr, hNotification);
 }
+
+void AmsRouter::SetConnectionCallback(const AmsNetId& addr, AdsConnectionCallback cb, void *user_data)
+{
+	auto ads = GetConnection(addr);
+	ads->SetCallback(addr, cb, user_data);
+}
